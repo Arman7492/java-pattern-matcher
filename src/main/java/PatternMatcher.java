@@ -3,9 +3,9 @@ import java.util.HashMap;
 public class PatternMatcher {
 
     public static boolean wordPattern(String pattern, String s) {
-        String[] words = s.split(" "); // Разбиваем строку на слова
+        String[] words = s.split(" ");
         if (pattern.length() != words.length) {
-            return false; // Если количество символов в шаблоне не совпадает с количеством слов
+            return false;
         }
 
         HashMap<Character, String> patternToWord = new HashMap<>();
@@ -15,26 +15,26 @@ public class PatternMatcher {
             char currentPatternChar = pattern.charAt(i);
             String currentWord = words[i];
 
-            // Проверяем, соответствует ли символ шаблона текущему слову
+
             if (patternToWord.containsKey(currentPatternChar)) {
                 if (!patternToWord.get(currentPatternChar).equals(currentWord)) {
-                    return false; // Нарушение соответствия
+                    return false;
                 }
             } else {
                 patternToWord.put(currentPatternChar, currentWord);
             }
 
-            // Проверяем, соответствует ли слово текущему символу шаблона
+
             if (wordToPattern.containsKey(currentWord)) {
                 if (!wordToPattern.get(currentWord).equals(currentPatternChar)) {
-                    return false; // Нарушение соответствия
+                    return false;
                 }
             } else {
                 wordToPattern.put(currentWord, currentPatternChar);
             }
         }
 
-        return true; // Шаблон и строка соответствуют друг другу
+        return true;
     }
 
     public static void main(String[] args) {
@@ -42,6 +42,6 @@ public class PatternMatcher {
         String s = "dog cat cat dog";
 
         boolean result = wordPattern(pattern, s);
-        System.out.println("Output: " + result); // Ожидается: true
+        System.out.println("Output: " + result);
     }
 }
